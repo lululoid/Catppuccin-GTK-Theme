@@ -563,14 +563,24 @@ splitbutton {
 		transition-property: background;
 	}
 
+	// libadwaita paints the divider at `color-mix(currentColor 30%)`; `none` erased it,
+	// which left the two halves with no boundary at all. Reuse the token `.flat` already uses.
 	> separator {
 		margin-top: $space-size;
 		margin-bottom: $space-size;
-		background: none;
+		background: $border-color;
 	}
 
 	> menubutton > button {
 		padding: ($medium-size - 24px) / 2 ($medium-size - 16px) / 2;
+	}
+
+	// The halves inherit `button`'s $modal-radius (9px) while the group is $corner-radius
+	// (12px), so a filled group would show a 3px mismatch at the outer corners. `.flat`
+	// already reconciles this; the default branch did not.
+	> button,
+	> menubutton > button {
+		border-radius: $corner-radius;
 	}
 
 	// Since the inner button doesn't have any style classes on it,
