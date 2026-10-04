@@ -198,24 +198,6 @@ headerbar {
 		@extend %titlebar-button;
 	}
 
-	// libadwaita gives a bare `button` a resting `color-mix(currentColor 10%)` fill, and
-	// AdwSplitButton's halves carry no style classes, so they inherit it. `%titlebar-button`
-	// erases that for every headerbar button. A split button is a joined control, so once
-	// the fill and the divider are both gone the pair reads as nothing until hover.
-	//
-	// `:not(:hover):not(:active)` is load-bearing: without it this rule would also outrank
-	// `headerbar button:hover` and the hover highlight would be lost.
-	splitbutton {
-		&:not(.flat):not(.suggested-action):not(.destructive-action):not(.opaque) {
-			> button,
-			> menubutton > button {
-				&:not(:hover):not(:active) {
-					background-color: gtkalpha(currentColor, 0.1);
-				}
-			}
-		}
-	}
-
 	button.suggested-action,
 	button.destructive-action {
 		&:disabled {
