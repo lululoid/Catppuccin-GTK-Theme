@@ -211,8 +211,8 @@ headerbar {
 	// height exceeds the `$space-size` margin slot above, so the control would render
 	// cramped. `:not(.text-button)` leaves labelled menu buttons on the base padding.
 	menubutton > button:not(.text-button) {
-		padding-top: 3px;
-		padding-bottom: 3px;
+		padding-top: $icon-button-padding-v;
+		padding-bottom: $icon-button-padding-v;
 	}
 
 	button:not(.suggested-action):not(.destructive-action) {

@@ -10,6 +10,19 @@ $small-size: if($compact == 'false', 24px, 22px);
 $medium-size: if($compact == 'false', 34px, 30px);
 $large-size: if($compact == 'false', 46px, 38px);
 
+// Core sizing relationship:
+// $large-size = $medium-size + 2 * $space-size
+//   compact: 38 = 30 + 2*4
+//   standard: 46 = 34 + 2*6
+// $medium-size is the canonical "control height" / "icon button height" for headerbar controls.
+// $space-size is the per-side margin for headerbar controls (buttons, entries, menubuttons, etc.)
+// $large-size = $medium-size + 2 * $space-size is the headerbar min-height.
+
+// Vertical padding for icon-only controls in headerbars (buttons, menubuttons, splitbuttons, entries, path buttons).
+// With a 16px icon, 3px padding gives 16 + 2*3 = 22px content.
+// Combined with $space-size margins (4px/6px per side), total = 16 + 2*3 + 2*$space-size = $medium-size.
+$icon-button-padding-v: 3px;
+
 $menuitem-size: if($compact == 'false', 28px, 24px);
 
 $root-font-size: if($compact == 'false', 14px, 13px);

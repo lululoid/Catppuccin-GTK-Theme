@@ -188,8 +188,8 @@ box > button {
 #NautilusPathButton,
 .nautilus-path-button {
 	margin: 0 $space-size / 2;
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top: $icon-button-padding-v;
+	padding-bottom: $icon-button-padding-v;
 	border-radius: $corner-radius;
 	@extend %button-flat;
 

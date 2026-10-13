@@ -600,8 +600,8 @@ splitbutton {
 	// which pushes the whole bar past `$large-size`.
 	&.image-button > button,
 	> menubutton > button {
-		padding-top: 3px;
-		padding-bottom: 3px;
+		padding-top: $icon-button-padding-v;
+		padding-bottom: $icon-button-padding-v;
 	}
 
 	&.text-button.image-button > button,
