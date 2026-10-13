@@ -193,16 +193,28 @@ headerbar {
 		margin-bottom: $space-size;
 	}
 
-	// An entry fills its headerbar slot the same way, so its margin is also what sets the
-	// rendered height: the derived 2px would render it at `$large-size` - 4 = 34px while the
-	// buttons beside it sit at 30px, which is what gnome-font-viewer and gnome-maps showed.
-	// `$space-size` gives a 30px slot. The entry's own
+	// An entry that fills its headerbar slot has its height set by its margin: the derived
+	// 2px above would render it at `$large-size` - 4 = 34px while the plain buttons beside
+	// it -- which `box > button` gives a `$space-size` margin -- come out at
+	// `$large-size` - 8 = 30px. `$space-size` gives a 30px slot, so the entry matches the
+	// buttons; that is the gnome-font-viewer and gnome-maps case. The entry's own
 	// `min-height: $medium-size - 2 * $entry-padding-v` keeps its natural height at
-	// `$medium-size`, so the demand is `$medium-size` + 2 * `$space-size` = `$large-size`
-	// exactly and the bar cannot grow.
+	// `$medium-size`.
 	entry {
 		margin-top: $space-size;
 		margin-bottom: $space-size;
+	}
+
+	// An entry in a stack is centred at its natural height instead of filling, so its margin
+	// is added to the bar's demand rather than subtracted from a slot: with `$space-size`
+	// above the demand lands 4px past `$large-size` and the bar grows. That is the Nautilus
+	// content pane, whose search/pathbar switcher is a stack, and it is why its bar read 42px
+	// against the sidebar's 38px while every control still measured 30px. Those keep the
+	// derived margin, which holds the bar at `$large-size`. Both values are 6px in the
+	// standard variant, so this only affects compact.
+	stack entry {
+		margin-top: ($large-size - 34px) / 2;
+		margin-bottom: ($large-size - 34px) / 2;
 	}
 
 	menubutton > button,
