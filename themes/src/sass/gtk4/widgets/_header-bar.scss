@@ -173,7 +173,6 @@ headerbar {
 	// Derived, not `$space-size`: these controls are 34px tall, so 4px per side reaches 42px
 	// and pushes the bar 4px past `$large-size`. The margin may only inset a control, never
 	// grow the bar.
-	entry,
 	spinbutton,
 	splitbutton,
 	button.back,
@@ -190,6 +189,18 @@ headerbar {
 	// Use the same `$space-size` margin `box > button` uses so a menu button and the
 	// buttons around it render at the same height.
 	menubutton {
+		margin-top: $space-size;
+		margin-bottom: $space-size;
+	}
+
+	// An entry fills its headerbar slot the same way, so its margin is also what sets the
+	// rendered height: the derived 2px would render it at `$large-size` - 4 = 34px while the
+	// buttons beside it sit at 30px, which is what gnome-font-viewer and gnome-maps showed.
+	// `$space-size` gives a 30px slot. The entry's own
+	// `min-height: $medium-size - 2 * $entry-padding-v` keeps its natural height at
+	// `$medium-size`, so the demand is `$medium-size` + 2 * `$space-size` = `$large-size`
+	// exactly and the bar cannot grow.
+	entry {
 		margin-top: $space-size;
 		margin-bottom: $space-size;
 	}
