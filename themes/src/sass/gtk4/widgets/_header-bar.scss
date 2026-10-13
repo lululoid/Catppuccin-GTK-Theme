@@ -177,11 +177,21 @@ headerbar {
 	spinbutton,
 	splitbutton,
 	button.back,
-	menubutton,
 	stackswitcher,
 	separator:not(.sidebar) {
 		margin-top: ($large-size - 34px) / 2;
 		margin-bottom: ($large-size - 34px) / 2;
+	}
+
+	// A menu button fills its slot instead of sitting at its natural height, so for it the
+	// margin is what sets the rendered height: the derived 2px above would leave it at
+	// `$large-size` - 4 = 34px in compact, while the plain buttons beside it -- which
+	// `box > button` gives a `$space-size` margin -- come out at `$large-size` - 8 = 30px.
+	// Use the same `$space-size` margin `box > button` uses so a menu button and the
+	// buttons around it render at the same height.
+	menubutton {
+		margin-top: $space-size;
+		margin-bottom: $space-size;
 	}
 
 	menubutton > button,
@@ -192,6 +202,17 @@ headerbar {
 	entry > menubutton {
 		margin-top: 0;
 		margin-bottom: 0;
+	}
+
+	// A menu button whose content is set with `set_child()` gets no style class on its
+	// inner button, so it falls back to `button`'s 5px vertical padding and its natural
+	// height is 24 + 2 * 5 = 34px, while the icon-only buttons beside it get
+	// `button.image-button`'s 3px and are 24 + 2 * 3 = 30px. Left alone that natural
+	// height exceeds the `$space-size` margin slot above, so the control would render
+	// cramped. `:not(.text-button)` leaves labelled menu buttons on the base padding.
+	menubutton > button:not(.text-button) {
+		padding-top: 3px;
+		padding-bottom: 3px;
 	}
 
 	button:not(.suggested-action):not(.destructive-action) {
