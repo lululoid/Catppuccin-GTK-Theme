@@ -23,6 +23,12 @@ $large-size: if($compact == 'false', 46px, 38px);
 // Combined with $space-size margins (4px/6px per side), total = 16 + 2*3 + 2*$space-size = $medium-size.
 $icon-button-padding-v: 3px;
 
+// Vertical padding for entries. GTK applies `min-height` to the content box, so an entry
+// renders as `min-height` + 2 * this, not as `min-height` alone. Subtract it from the
+// min-height so the rendered box still equals `$medium-size` and matches the icon
+// buttons beside it; without this the entry comes out one padding-step taller.
+$entry-padding-v: 2px;
+
 $menuitem-size: if($compact == 'false', 28px, 24px);
 
 $root-font-size: if($compact == 'false', 14px, 13px);
