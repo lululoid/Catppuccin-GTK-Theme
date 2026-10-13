@@ -591,6 +591,19 @@ splitbutton {
 		padding-right: $space-size;
 	}
 
+	// The halves carry no style classes, so they fall back to `button`'s 5px vertical
+	// padding and end up 24 + 2 * 5 = 34px tall, while the icon-only buttons beside them
+	// get `button.image-button`'s 3px and are 24 + 2 * 3 = 30px. Match the image-button
+	// padding so a split button is the same height as its neighbours instead of 4px
+	// taller. Growing them the other way would need 5px padding plus the derived 2px
+	// margin, and any extra vertical padding also lands on the window-control buttons,
+	// which pushes the whole bar past `$large-size`.
+	&.image-button > button,
+	> menubutton > button {
+		padding-top: 3px;
+		padding-bottom: 3px;
+	}
+
 	&.text-button.image-button > button,
 	&.image-text-button > button {
 		padding-left: $space-size * 1.5;
