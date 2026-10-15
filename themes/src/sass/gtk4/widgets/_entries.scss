@@ -6,10 +6,8 @@
 entry {
 	%entry-basic,
 	& {
-		// `min-height` is the content box, so the rendered height is this plus 2 * the
-		// vertical padding. Derive it from `$medium-size` by subtracting the padding, so
-		// the entry renders at `$medium-size` like the icon buttons beside it instead of
-		// overshooting by one padding-step.
+		// `min-height` is the content box: subtract the vertical padding so the entry
+		// renders at `$medium-size`, like the icon buttons beside it.
 		min-height: $medium-size - 2 * $entry-padding-v;
 		padding: $entry-padding-v $space-size + 4px;
 		// margin: $space-size 0;

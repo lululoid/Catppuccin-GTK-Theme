@@ -167,24 +167,17 @@
 	border-radius: $corner-radius;
 }
 
-// Buttons that are direct children of a box (Back/Forward, the search toggle) inherit
-// `button.image-button`'s `padding: 3px`, which makes them 30px tall instead of the 34px
-// every other headerbar control uses. The 4px margin alone then filled the 38px bar, so
-// the split button beside them looked 4px taller. Give them the base `button` vertical
-// padding and the derived margin the headerbar list uses instead: 34 + 2 * 2 = 38px,
-// matching `splitbutton`. Raising the padding without lowering the margin would push
-// the bar to 42px.
+// box-child buttons (Back/Forward, search toggle) inherit `button.image-button`'s 3px
+// padding and render 4px shorter than the split button beside them: use the base
+// `button` padding and the derived margin so they match.
 box > button {
 	background-color: $titlebar-fill;
 	border-radius: $corner-radius;
 	margin: $space-size 0;
 }
 
-// A path button carries a label, so its natural height is base `button`'s 5px vertical
-// padding plus the label: 24 + 2 * 5 = 34px. The icon-only buttons beside it get
-// `button.image-button`'s 3px and are 24 + 2 * 3 = 30px, and the pathbar does not fill its
-// slot the way a menu button does, so that 34px is what renders. Use the same 3px the
-// image buttons get so the pathbar and the buttons around it are the same height.
+// a labelled path button renders at its natural height, so use the icon-button padding
+// to match the height of the icon-only buttons beside it.
 #NautilusPathButton,
 .nautilus-path-button {
 	margin: 0 $space-size / 2;

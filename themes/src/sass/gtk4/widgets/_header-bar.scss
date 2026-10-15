@@ -169,10 +169,8 @@ headerbar {
 		}
 	}
 
-	// add vertical margins to common widget on the headerbar to avoid them spanning the whole height
-	// Derived, not `$space-size`: these controls are 34px tall, so 4px per side reaches 42px
-	// and pushes the bar 4px past `$large-size`. The margin may only inset a control, never
-	// grow the bar.
+	// vertical margins keep common headerbar widgets from spanning the whole height
+	// Derived, not `$space-size`: a margin may only inset a control, never grow the bar.
 	spinbutton,
 	splitbutton,
 	button.back,
@@ -182,43 +180,24 @@ headerbar {
 		margin-bottom: ($large-size - 34px) / 2;
 	}
 
-	// A menu button fills its slot instead of sitting at its natural height, so for it the
-	// margin is what sets the rendered height: `$space-size` leaves it at
-	// `$large-size` - 2 * `$space-size` = `$medium-size`, the same height as the plain
-	// buttons beside it -- which `box > button` gives a `$space-size` margin -- come out
-	// at. The margin is also added to the bar's demand, and `min-height` is only a floor,
-	// so the inner button must hold a `$medium-size` natural height or the demand outgrows
-	// the bar: a menu button whose inner button falls back to `button`'s 5px vertical
-	// padding is 24 + 2 * 5 = 34px naturally and demands 34 + 8 = 42px past `$large-size`.
-	// That is the gnome-calendar and gnome-calculator case, whose menu buttons read 42px
-	// bars. The `menubutton > button` rule below carries the padding that holds the
-	// natural height at `$medium-size`, so keep this margin and fix the padding, not the
-	// margin: deriving it to 2px keeps the bar at 38px but leaves every menu button
-	// rendering 4px taller than the icon buttons.
+	// a menu button fills its slot, so its margin sets the rendered height: `$space-size`
+	// renders it at `$medium-size`, like the plain buttons beside it. The `menubutton >
+	// button` rule below carries the padding that holds its natural height there.
 	menubutton {
 		margin-top: $space-size;
 		margin-bottom: $space-size;
 	}
 
-	// An entry that fills its headerbar slot has its height set by its margin: the derived
-	// 2px above would render it at `$large-size` - 4 = 34px while the plain buttons beside
-	// it -- which `box > button` gives a `$space-size` margin -- come out at
-	// `$large-size` - 8 = 30px. `$space-size` gives a 30px slot, so the entry matches the
-	// buttons; that is the gnome-font-viewer and gnome-maps case. The entry's own
-	// `min-height: $medium-size - 2 * $entry-padding-v` keeps its natural height at
-	// `$medium-size`.
+	// an entry that fills its slot is sized by its margin like a menu button; `$space-size`
+	// matches the plain buttons beside it.
 	entry {
 		margin-top: $space-size;
 		margin-bottom: $space-size;
 	}
 
-	// An entry in a stack is centred at its natural height instead of filling, so its margin
-	// is added to the bar's demand rather than subtracted from a slot: with `$space-size`
-	// above the demand lands 4px past `$large-size` and the bar grows. That is the Nautilus
-	// content pane, whose search/pathbar switcher is a stack, and it is why its bar read 42px
-	// against the sidebar's 38px while every control still measured 30px. Those keep the
-	// derived margin, which holds the bar at `$large-size`. Both values are 6px in the
-	// standard variant, so this only affects compact.
+	// a stack entry is centred at its natural height, so its margin adds to the bar's
+	// demand instead of filling a slot: keep the derived margin to hold the bar at
+	// `$large-size`.
 	stack entry {
 		margin-top: ($large-size - 34px) / 2;
 		margin-bottom: ($large-size - 34px) / 2;
@@ -234,16 +213,8 @@ headerbar {
 		margin-bottom: 0;
 	}
 
-	// A menu button's inner button falls back to `button`'s 5px vertical padding -- set
-	// via `set_child()` it carries no style class, and GTK does not add `image-button` to
-	// GtkMenuButton's internal toggle button -- so its natural height is 24 + 2 * 5 = 34px
-	// while the icon-only buttons beside it get `button.image-button`'s 3px and are
-	// 24 + 2 * 3 = 30px. Because a headerbar menu button fills its slot and its margin is
-	// added to the bar's demand, that 4px of extra padding both renders the menu button
-	// taller than its neighbours and pushes the bar to 42px past `$large-size`. Both GTK
-	// menu-button flavours get the `$icon-button-padding-v` padding here -- icon and
-	// labelled alike -- so every menu button's natural height is `$medium-size` and the
-	// demand lands exactly on `$large-size`.
+	// the menu button's inner button carries no style class and falls back to `button`'s
+	// 5px padding; give it the icon-button padding so its natural height is `$medium-size`.
 	menubutton > button {
 		padding-top: $icon-button-padding-v;
 		padding-bottom: $icon-button-padding-v;
@@ -465,24 +436,15 @@ window.devel {
  * Windows button *
  ******************/
 
-// macOS variant: the dot is painted on `> image`, never on the button.
-// `windowcontrols` stretches its buttons to the container, and that container can be
-// taller than `headerbar { min-height }`, so a fill on the button renders as a vertical
-// ellipse. The image keeps its natural size, so a dot painted there is 16x16 whatever
-// the container does.
-//
-// `background: none` is repeated per state rather than left to the base rule because
-// `headerbar button:hover/:active` outrank it on specificity, and its
-// `alpha(currentColor, ...)` fill is not invisible: `color: transparent` resolves
-// `currentColor` to `rgba(0,0,0,0)`, so `alpha(currentColor, 0.08)` paints 8% black.
-// GTK resolves the resulting tie by source order, and these rules are emitted after
-// `headerbar button:hover/:active`, so they win at equal specificity.
+// macOS variant: the dot is painted on `> image`, never on the button, because the
+// stretched container can be taller than the button and would render a fill as an
+// ellipse. `background: none` is repeated per state so these rules outrank
+// `headerbar button:hover/:active`'s visible `alpha(currentColor, ...)` fill.
 %mac_window_button {
 	min-height: 16px;
 	min-width: 16px;
 	padding: 0;
-	// 16px = the icon only; this placeholder sets no padding on `> image`.
-	// Must equal `$large-size` in total or the button overflows the headerbar.
+	// 16px icon only; the margin fills the rest of `$large-size` or the button overflows.
 	margin: ($large-size - 16px) / 2 0;
 	color: transparent;
 	background: none;
@@ -513,10 +475,8 @@ window.devel {
 		background: none;
 	}
 
-	// `headerbar button:backdrop` sets a dimmed colour and outranks the base
-	// `color: transparent` above, so the minimise/close glyphs showed up when the window
-	// was unfocused. The role classes are needed to outrank it on specificity rather than
-	// on source order.
+	// the role classes outrank `headerbar button:backdrop`'s dimmed colour, which
+	// otherwise shows the minimise/close glyphs when the window is unfocused.
 	&.close:backdrop,
 	&.minimize:backdrop,
 	&.maximize:backdrop {
