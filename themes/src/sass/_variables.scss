@@ -14,7 +14,7 @@ $large-size: if($compact == 'false', 46px, 38px);
 // min-height; $medium-size is the control height, $space-size the per-side margin.
 
 // Vertical padding for icon-only controls in headerbars (buttons, menubuttons, splitbuttons, entries, path buttons).
-$icon-button-padding-v: 3px;
+$icon-button-padding-v: if($compact == 'false', 5px, 3px);
 
 // Vertical padding for entries. GTK applies `min-height` to the content box, so subtract
 // it there to keep the rendered height at `$medium-size`.
@@ -50,34 +50,34 @@ $transition-shadow: box-shadow $duration $ease-out;
 
 // Shadows
 $shadow-z1:
-	0 1px 2px rgba(black, 0.04),
-	0 1px 1px rgba(black, 0.04);
+  0 1px 2px rgba(black, 0.04),
+  0 1px 1px rgba(black, 0.04);
 $shadow-z2:
-	0 2px 4px rgba(black, 0.06),
-	0 1px 2px rgba(black, 0.04);
+  0 2px 4px rgba(black, 0.06),
+  0 1px 2px rgba(black, 0.04);
 $shadow-z3:
-	0 4px 10px rgba(black, 0.08),
-	0 1px 4px rgba(black, 0.06),
-	inset 0 0 0 0.5px rgba(black, 0.05);
+  0 4px 10px rgba(black, 0.08),
+  0 1px 4px rgba(black, 0.06),
+  inset 0 0 0 0.5px rgba(black, 0.05);
 $shadow-z4:
-	0 6px 12px rgba(black, 0.16),
-	0 3px 6px rgba(black, 0.12),
-	0 1px 3px rgba(black, 0.08),
-	inset 0 0 0 0.5px rgba(black, 0.1);
+  0 6px 12px rgba(black, 0.16),
+  0 3px 6px rgba(black, 0.12),
+  0 1px 3px rgba(black, 0.08),
+  inset 0 0 0 0.5px rgba(black, 0.1);
 $shadow-z5:
-	0 4px 6px rgba(black, 0.16),
-	0 2px 4px rgba(black, 0.12),
-	inset 0 0 0 0.5px rgba(black, 0.12);
+  0 4px 6px rgba(black, 0.16),
+  0 2px 4px rgba(black, 0.12),
+  inset 0 0 0 0.5px rgba(black, 0.12);
 $shadow-z6:
-	0 16px 34px rgba(black, 0.2),
-	0 4px 14px rgba(black, 0.12),
-	inset 0 0 0 0.5px rgba(black, 0.15);
+  0 16px 34px rgba(black, 0.2),
+  0 4px 14px rgba(black, 0.12),
+  inset 0 0 0 0.5px rgba(black, 0.15);
 $shadow-z12:
-	0 20px 50px rgba(black, 0.28),
-	0 6px 20px rgba(black, 0.16),
-	inset 0 0 0 0.5px rgba(black, 0.15);
+  0 20px 50px rgba(black, 0.28),
+  0 6px 20px rgba(black, 0.16),
+  inset 0 0 0 0.5px rgba(black, 0.15);
 $shadow-z16:
-	0 6px 10px rgba(black, 0.22),
-	0 3px 6px rgba(black, 0.18),
-	0 1px 3px rgba(black, 0.12),
-	inset 0 0 0 0.5px rgba(black, 0.15);
+  0 6px 10px rgba(black, 0.22),
+  0 3px 6px rgba(black, 0.18),
+  0 1px 3px rgba(black, 0.12),
+  inset 0 0 0 0.5px rgba(black, 0.15);
