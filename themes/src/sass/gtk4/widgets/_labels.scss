@@ -2,7 +2,17 @@
  * Labels *
  **********/
 
+text {
+	margin-bottom: -#{$space-size / 2};
+
+	> placeholder {
+		margin-bottom: -#{$space-size / 2};
+	}
+}
+
 label {
+	margin-bottom: -#{$space-size};
+
 	&.separator {
 		color: $text-secondary;
 	}
@@ -64,6 +74,8 @@ label {
 }
 
 .title {
+	margin-bottom: -#{$space-size};
+
 	&-1 {
 		font-weight: 800;
 		font-size: 20pt;
