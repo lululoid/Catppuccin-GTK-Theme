@@ -72,6 +72,13 @@ files_legacy() {
     run_safe sed -i "/\$files_legacy:/s/false/true/" "${SRC_DIR}/sass/_tweaks-temp.scss"
 }
 
+# Injects custom label nudge value (px) into SASS.
+label_nudge_tweak() {
+    if [[ "${label_nudge}" != "4" ]]; then
+        run_safe sed -i "/\$label_nudge:/s/if(\$compact == 'false', 6, 4)/${label_nudge}/" "${SRC_DIR}/sass/_tweaks-temp.scss"
+    fi
+}
+
 # Injects custom border-radius value to SASS.
 roundness_radius() {
     if [[ "${roundness}" != "12" ]]; then
@@ -105,6 +112,7 @@ apply_theme_tweaks() {
         if [[ "$border"     == "true" ]]; then border_style;     fi
         if [[ "$macos"      == "true" ]]; then macos_winbutton;  fi
         if [[ "${files_legacy:-}" == "true" ]]; then files_legacy; fi
+        label_nudge_tweak
         apply_shell_opacity
         roundness_radius
         panel_border_style
@@ -183,6 +191,13 @@ report_tweaks() {
     elif [[ "$mode" == "all" ]]; then
         printf "\r\033[K│ %-20s : '%s'\n" "Nautilus Design" "Standard (Default)"
         count=$((count + 1))
+    fi
+
+    # Label nudge adjustment
+    if [[ "${label_nudge}" != "4" ]]; then
+        printf "\r\033[K│ %-20s : '%s'\n" "Label nudge" "${label_nudge}px"; count=$((count + 1))
+    elif [[ "$mode" == "all" ]]; then
+        printf "\r\033[K│ %-20s : '%s'\n" "Label nudge" "4px (Default)"; count=$((count + 1))
     fi
 
     # Border radius

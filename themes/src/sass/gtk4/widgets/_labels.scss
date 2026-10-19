@@ -3,15 +3,15 @@
  **********/
 
 text {
-	margin-bottom: -#{$space-size / 2};
+	margin-bottom: -#{$label_nudge / 2}px;
 
 	> placeholder {
-		margin-bottom: -#{$space-size / 2};
+		margin-bottom: -#{$label_nudge / 2}px;
 	}
 }
 
 label {
-	margin-bottom: -#{$space-size};
+	margin-bottom: -#{$label_nudge}px;
 
 	&.separator {
 		color: $text-secondary;
@@ -74,7 +74,7 @@ label {
 }
 
 .title {
-	margin-bottom: -#{$space-size};
+	margin-bottom: -#{$label_nudge}px;
 
 	&-1 {
 		font-weight: 800;

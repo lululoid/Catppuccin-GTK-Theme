@@ -44,6 +44,7 @@
 
 	StLabel.hint-text {
 		color: $text-disabled;
+		margin-top: #{$label_nudge / 2}px;
 	}
 }
 

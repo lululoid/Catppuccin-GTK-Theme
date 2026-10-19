@@ -130,12 +130,12 @@ headerbar {
 		padding-left: $space-size;
 		padding-right: $space-size;
 		margin: 0 -13px;
-		margin-bottom: -#{$space-size};
+		margin-bottom: -#{$label_nudge}px;
 		font-weight: bold;
 	}
 
 	.subtitle {
-		margin-top: #{$space-size};
+		margin-top: #{$label_nudge}px;
 		padding: 0 $space-size * 2;
 		font-size: smaller;
 	}
@@ -580,7 +580,7 @@ windowtitle {
 	}
 
 	.subtitle {
-		margin-top: #{$space-size};
+		margin-top: #{$label_nudge}px;
 		font-size: smaller;
 		padding-left: 12px;
 		padding-right: 12px;

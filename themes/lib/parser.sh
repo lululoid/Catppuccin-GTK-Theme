@@ -42,6 +42,7 @@ OPTIONS:
                            4. macos         macOS-style window buttons
                            5. radius        Set custom border radius (0 to 32)
                            6. files-legacy  Nautilus classic legacy style
+                           7. nudge <px>    Label vertical nudge adjustment (0-32)
 
   -h, --help              Show this help message
 EOF
@@ -245,6 +246,15 @@ parse_args() {
 
                         files-legacy) files_legacy="true"; shift ;;
 
+                        nudge)
+                            label_nudge="${2}"
+                            if [[ ! "${label_nudge}" =~ ^[0-9]+$ || "${label_nudge}" -lt 0 || "${label_nudge}" -gt 32 ]]; then
+                                log_error "Label nudge must be a number between 0 and 32: ${label_nudge}"
+                                exit 1
+                            fi
+                            shift 2
+                            ;;
+
                         -*) break ;;
 
                         *)
@@ -309,6 +319,7 @@ build_tweaks_tag() {
     [[ "${blackness}"           == "true" ]] && parts+=("BK")
     [[ "${macos}"               == "true" ]] && parts+=("MB")
     [[ "${legacy_buttons:-}"    == "true" ]] && parts+=("LB")
+    [[ "${label_nudge}" != "4" ]] && parts+=("N${label_nudge}")
 
     # Build final suffix tag
     if [[ ${#parts[@]} -gt 0 ]]; then

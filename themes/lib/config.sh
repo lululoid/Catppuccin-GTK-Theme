@@ -49,6 +49,7 @@ shell_opacity="0.85"    # GNOME Shell panel alpha transparency value
 roundness="12"          # Widget border radius in pixels
 panel_border="true"     # GNOME Shell panel border toggle
 files_legacy="false"    # Legacy Nautilus file manager styling toggle
+label_nudge="4"         # Label vertical nudge adjustment in pixels
 
 # --- Destination Pathway Selection ---
 # Set path based on user privilege levels (root installs system-wide)
