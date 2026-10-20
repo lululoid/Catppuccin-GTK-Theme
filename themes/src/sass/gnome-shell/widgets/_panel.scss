@@ -50,6 +50,7 @@
 		color: $text-secondary;
 		transition-duration: 150ms;
 		border-radius: $base_radius;
+		text-align: center;
 		text-shadow: none;
 		box-shadow: none;
 
@@ -140,6 +141,7 @@
 			padding: $base_padding;
 			margin: 0;
 			-st-icon-style: symbolic;
+			text-align: center;
 		}
 
 		.appindicator-trayicons-box {
@@ -238,8 +240,8 @@
 	Gjs_appindicatorsupport_rgcjonas_gmail_com_indicatorStatusIcon_IndicatorStatusIcon.panel-button,
 	Gjs_appindicatorsupport_rgcjonas_gmail_com_indicatorStatusIcon_AppIndicatorsIndicatorStatusIcon.panel-button {
 		// Fcitx
-		-natural-hpadding: 12px + $base_padding !important;
-		-minimum-hpadding: 12px + $base_padding !important;
+		-natural-hpadding: 0px !important;
+		-minimum-hpadding: 0px !important;
 	}
 
 	// indicator for active
