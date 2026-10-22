@@ -44,8 +44,8 @@
 
 	// panel menus
 	.panel-button {
-		-natural-hpadding: 12px;
-		-minimum-hpadding: 12px;
+		-natural-hpadding: $base_padding;
+		-minimum-hpadding: $base_padding;
 		font-weight: bold;
 		color: $text-secondary;
 		transition-duration: 150ms;
@@ -240,13 +240,17 @@
 	Gjs_appindicatorsupport_rgcjonas_gmail_com_indicatorStatusIcon_IndicatorStatusIcon.panel-button,
 	Gjs_appindicatorsupport_rgcjonas_gmail_com_indicatorStatusIcon_AppIndicatorsIndicatorStatusIcon.panel-button {
 		// Fcitx
-		-natural-hpadding: 0px !important;
-		-minimum-hpadding: 0px !important;
+		-natural-hpadding: $base_padding !important;
+		-minimum-hpadding: $base_padding !important;
 	}
 
 	// indicator for active
 	.screencast-indicator,
 	.remote-access-indicator {
 		color: $warning;
+	}
+
+	Gjs_ui_panel_QuickSettings.panel-button {
+		margin-left: $base_padding * 2;
 	}
 }
