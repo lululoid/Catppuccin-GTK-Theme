@@ -152,14 +152,15 @@ tabbar {
 	tab {
 		@extend %tabbar_tab;
 		padding: $space-size;
-		margin: $space-size 2px;
+		margin: 0 2px $space-size;
 
 		&.needs-attention {
 			background-image: $tab_needs_attention_gradient;
 
 			&:hover {
 				background-image:
-					image(gtkalpha(currentColor, 0.03)), $tab_needs_attention_gradient;
+					image(gtkalpha(currentColor, 0.03)),
+					$tab_needs_attention_gradient;
 			}
 		}
 	}

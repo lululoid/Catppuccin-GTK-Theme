@@ -70,7 +70,7 @@
 		color: on($indicator, secondary);
 		border-radius: $modal-radius;
 		color: $text;
-		padding: 6px 0;
+		padding: $space-size 6px;
 
 		&:hover,
 		&:active,
