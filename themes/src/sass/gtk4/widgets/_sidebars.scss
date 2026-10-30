@@ -70,6 +70,7 @@
 		color: on($indicator, secondary);
 		border-radius: $modal-radius;
 		color: $text;
+		min-height: $small-size;
 		padding: $space-size 6px;
 
 		&:hover,
@@ -88,6 +89,15 @@
 			&:focus {
 				color: lighten($primary, 10%);
 			}
+		}
+
+		// Remove Nautilus's internal padding on sidebar-revealer (8px top/bottom)
+		// GTK4 does NOT support max-height; negative margin on .sidebar-revealer
+		// reduces row allocation from 46px to 30px, matching top items.
+		& > .sidebar-revealer,
+		& > .sidebar-revealer > box {
+			margin-top: -8px;
+			margin-bottom: -8px;
 		}
 	}
 }
@@ -328,7 +338,6 @@ stacksidebar {
 
 	> row {
 		min-height: $small-size;
-		// padding: 0 $space-size 0 $space-size;
 		padding: 0 6px;
 		margin: 0;
 		border-radius: $modal-radius;
@@ -373,6 +382,15 @@ stacksidebar {
 
 		&:not(:first-child) {
 			margin-top: $space-size / 2;
+		}
+
+// Remove Nautilus's internal padding on sidebar-revealer (8px top/bottom)
+		// GTK4 does NOT support max-height; negative margin on .sidebar-revealer
+		// reduces row allocation from 46px to 30px, matching top items.
+		> .sidebar-revealer,
+		> .sidebar-revealer > box {
+			margin-top: -8px;
+			margin-bottom: -8px;
 		}
 	}
 }
