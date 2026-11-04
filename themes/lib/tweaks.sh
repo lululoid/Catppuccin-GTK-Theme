@@ -74,8 +74,8 @@ files_legacy() {
 
 # Injects custom label nudge value (px) into SASS.
 label_nudge_tweak() {
-    if [[ "${label_nudge}" != "4" ]]; then
-        run_safe sed -i "/\$label_nudge:/s/if(\$compact == 'false', 6, 4)/${label_nudge}/" "${SRC_DIR}/sass/_tweaks-temp.scss"
+    if [[ "${label_nudge}" != "0" ]]; then
+        run_safe sed -i "/\$label_nudge:/s/0/${label_nudge}/" "${SRC_DIR}/sass/_tweaks-temp.scss"
     fi
 }
 
@@ -194,10 +194,10 @@ report_tweaks() {
     fi
 
     # Label nudge adjustment
-    if [[ "${label_nudge}" != "4" ]]; then
+    if [[ "${label_nudge}" != "0" ]]; then
         printf "\r\033[K│ %-20s : '%s'\n" "Label nudge" "${label_nudge}px"; count=$((count + 1))
     elif [[ "$mode" == "all" ]]; then
-        printf "\r\033[K│ %-20s : '%s'\n" "Label nudge" "4px (Default)"; count=$((count + 1))
+        printf "\r\033[K│ %-20s : '%s'\n" "Label nudge" "0px (Default)"; count=$((count + 1))
     fi
 
     # Border radius

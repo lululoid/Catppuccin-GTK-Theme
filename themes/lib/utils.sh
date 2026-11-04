@@ -327,7 +327,7 @@ print_summary() {
     [[ "${files_legacy:-}" == "true" ]] && \
         printf "│ ${COLOR_BOLD}%-13s${COLOR_RESET} : '%s'\n" "Files Style"   "${files_val}"
 
-    [[ "${label_nudge}" != "4" ]] && \
+    [[ "${label_nudge}" != "0" ]] && \
         printf "│ ${COLOR_BOLD}%-13s${COLOR_RESET} : '%s'\n" "Label Nudge"   "${label_nudge}px"
 
     [[ "$float" == "true" ]] && \

@@ -40,5 +40,5 @@ $float: 'false';
 $files_legacy: 'false';
 
 // Label vertical nudge adjustment (px) for font-specific centering
-// Defaults match $space-size (6px standard, 4px compact); override via install script
-$label_nudge: if($compact == 'false', 3, 4);
+// Defaults to 0 (disabled); override via install script --tweaks nudge <px>
+$label_nudge: 0;

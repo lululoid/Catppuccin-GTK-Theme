@@ -319,7 +319,7 @@ build_tweaks_tag() {
     [[ "${blackness}"           == "true" ]] && parts+=("BK")
     [[ "${macos}"               == "true" ]] && parts+=("MB")
     [[ "${legacy_buttons:-}"    == "true" ]] && parts+=("LB")
-    [[ "${label_nudge}" != "4" ]] && parts+=("N${label_nudge}")
+    [[ "${label_nudge}" != "0" ]] && parts+=("N${label_nudge}")
 
     # Build final suffix tag
     if [[ ${#parts[@]} -gt 0 ]]; then
