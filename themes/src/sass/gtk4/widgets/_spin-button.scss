@@ -22,6 +22,7 @@ spinbutton {
 		box-shadow: none;
 		background-color: transparent;
 		margin: 0;
+		margin-bottom: -#{$label_nudge / 2}px;
 
 		> selection {
 			@extend %selected_items_primary;
