@@ -13,6 +13,20 @@ uninstall_link() {
         "${HOME}/.config/gtk-4.0/gtk-dark.css"
 }
 
+# Removes the flatpak theme override set by --flatpak.
+# Restores the user's previous override from backup if one exists,
+# otherwise falls back to resetting all user overrides.
+uninstall_flatpak_override() {
+    if has_command flatpak; then
+        if [[ -f "${flatpak_backup}" ]]; then
+            run_safe cp "${flatpak_backup}" "${HOME}/.local/share/flatpak/overrides/global"
+            run_safe rm -f "${flatpak_backup}"
+        else
+            run_safe flatpak override --user --reset
+        fi
+    fi
+}
+
 # Removes a single theme variant directory if it exists.
 # Args:
 #   1: dest  - Base destination path

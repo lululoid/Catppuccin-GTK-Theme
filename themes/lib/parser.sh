@@ -22,6 +22,8 @@ OPTIONS:
 
   -l, --libadwaita        Link installed GTK4 theme to config folder for Libadwaita applications
 
+  -f, --flatpak           Set flatpak override for GTK_THEME and theme directory access
+
   -v, --verbose           Display detailed installation logs
 
   -S, --dry-run           Simulate installation without making changes
@@ -92,6 +94,12 @@ parse_args() {
                 # Link to Libadwaita
             -l | --libadwaita)
                 libadwaita="true"
+                shift
+                ;;
+
+                # Flatpak theme override
+            -f | --flatpak)
+                flatpak="true"
                 shift
                 ;;
 

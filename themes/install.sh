@@ -149,6 +149,15 @@ run_installation() {
             link_libadwaita "${dest:-$DEST_DIR}" "${name:-$THEME_NAME}" "$theme" "$apply_color" "$size" "$ctype" "$tweaks_tag"
         fi
 
+        if [[ "${flatpak:-}" == 'true' ]]; then
+            local flatpak_override_global="${HOME}/.local/share/flatpak/overrides/global"
+            run_safe mkdir -p "${HOME}/.local/share/flatpak/overrides"
+            if [[ -f "${flatpak_override_global}" && ! -f "${flatpak_backup}" ]]; then
+                run_safe cp "${flatpak_override_global}" "${flatpak_backup}"
+            fi
+            run_safe flatpak override --user --env="GTK_THEME=${name:-$THEME_NAME}${ctype}${theme}${apply_color}${size}${tweaks_tag}" --filesystem="${HOME}/.themes" --filesystem="${HOME}/.config/gtk-4.0"
+        fi
+
         log_success "Integration of ${name:-$THEME_NAME}${ctype}${theme}${apply_color}${size}${tweaks_tag} Theme"
 
         # Store details for post-install summary.
@@ -283,6 +292,11 @@ main() {
             uninstall_link
         else
             uninstall_themes && uninstall_link
+        fi
+
+        if [[ "${flatpak:-}" == 'true' ]]; then
+            log_info "Resetting flatpak theme override..."
+            uninstall_flatpak_override
         fi
     else
         log_header "System Verification"

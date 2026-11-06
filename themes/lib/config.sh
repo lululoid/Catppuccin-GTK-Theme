@@ -29,6 +29,8 @@ lcolors=()  # Appearance modes for Libadwaita integration
 # --- Runtime State & Tweak Flags ---
 uninstall="false"       # Uninstall theme variants
 libadwaita="false"      # Link theme to GTK4/Libadwaita config
+flatpak="false"         # Set flatpak override for GTK_THEME and theme dir access
+flatpak_backup="${HOME}/.local/share/flatpak/overrides/global.catppuccin.bak"
 accent="false"          # Enforce non-default accent color
 compact="false"         # Enable minimal window padding
 frappe="false"          # Catppuccin Frappé background scheme
